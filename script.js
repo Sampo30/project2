@@ -1,4 +1,4 @@
-const API_KEY = "d271a80cf28ddc34f134d0ab4f5e9fea"; // Replace with your own API key
+const API_KEY = d271a80cf28ddc34f134d0ab4f5e9fea; // Replace with your own API key
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
 function fetchArtists(name) {
