@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Music App</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body class="dark">
-    <h1>Music App</h1>
-    <form id="search-form">
-      <input type="text" id="search-input" placeholder="Search for an artist or band" />
-      <button type="submit">Search</button>
-    </form>
-    <div id="artist-list"></div>
-    <div id="album-info"></div>
-    <div id="spinner" class="spinner">
-      <div class="spinner-ring"></div>
-    </div>
-    <p id="error-message" class="error"></p>
-    <p id="no-results" class="error">No results found.</p>
-    <script src="script.js"></script>
-  </body>
+<head>
+  <link rel="stylesheet" href="styles.css">
+	<title>Favorite Artists</title>
+</head>
+<body>
+	<h1>My Favorite Artists</h1>
+	<div id="artist-buttons">
+		<button>Opeth</button>
+		<button>Devin Townsend</button>
+		<button>Pink Floyd</button>
+		<button>Disillusion</button>
+	</div>
+	<div id="artist-info"></div>
+  <script src="script.js"></script>
+</body>
 </html>
