@@ -1,4 +1,4 @@
-const API_KEY = d271a80cf28ddc34f134d0ab4f5e9fea; // Replace with your own API key
+const API_KEY = "d271a80cf28ddc34f134d0ab4f5e9fea";
 const API_URL = "https://ws.audioscrobbler.com/2.0/";
 
 function fetchArtists(name) {
@@ -117,24 +117,53 @@ function hideSpinner() {
 function fetchArtists(name) {
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.search",
+    artist: name,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .then(artists => {
-    hideSpinner();
-    return artists;
-  });
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
+
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      hideSpinner();
+      return data.results.artistmatches.artist;
+    });
 }
 
 function fetchAlbums(artistId) {
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.gettopalbums",
+    artist: artistId,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .then(albums => {
-    hideSpinner();
-    return albums;
-  });
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
+
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      hideSpinner();
+      return data.topalbums.album;
+    });
 }
+
 
 const errorMessage = document.getElementById("error-message");
 
@@ -151,25 +180,62 @@ function fetchArtists(name) {
   hideError();
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.search",
+    artist: name,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .catch(error => {
-    hideSpinner();
-    showError(error.message);
-  });
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
+
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      hideSpinner();
+      return data.results.artistmatches.artist;
+    })
+    .catch(error => {
+      hideSpinner();
+      showError(error.message);
+    });
 }
 
 function fetchAlbums(artistId) {
   hideError();
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.gettopalbums",
+    artist: artistId,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .catch(error => {
-    hideSpinner();
-    showError(error.message);
-  });
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
+
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      hideSpinner();
+      return data.topalbums.album;
+    })
+    .catch(error => {
+      hideSpinner();
+      showError(error.message);
+    });
 }
+
 
 const noResults = document.getElementById("no-results");
 
@@ -186,18 +252,38 @@ function fetchArtists(name) {
   hideNoResults();
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.search",
+    artist: name,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .then(artists => {
-    hideSpinner();
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
 
-    if (artists.length === 0) {
-      showNoResults();
-    } else {
-      hideNoResults();
-      return artists;
-    }
-  });
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      hideSpinner();
+
+      const artists = data.results.artistmatches.artist;
+
+      if (artists.length === 0) {
+        showNoResults();
+      } else {
+        hideNoResults();
+        return artists;
+      }
+    })
+    .catch(error => {
+      hideSpinner();
+      showError(error.message);
+    });
 }
 
 function fetchAlbums(artistId) {
@@ -205,10 +291,26 @@ function fetchAlbums(artistId) {
   hideNoResults();
   showSpinner();
 
-  // API request and handling code from previous response...
+  const params = {
+    method: "artist.gettopalbums",
+    artist: artistId,
+    api_key: API_KEY,
+    format: "json",
+    limit: 10
+  };
 
-  .then(albums => {
-    hideSpinner();
+  const queryString = Object.keys(params)
+    .map(key => `${key}=${encodeURIComponent(params[key])}`)
+    .join("&");
+
+  const url = `${API_URL}?${queryString}`;
+
+  return fetch(url)
+    .then(response => response.json())
+    .then(albums => {
+      hideSpinner();
+
+      const albums = data.results.albumInfo.album;
 
     if (albums.length === 0) {
       showNoResults();
