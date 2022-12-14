@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Music App</title>
-</head>
-<body>
-  <h1>Music App</h1>
-
-  <h2>Select an artist or band:</h2>
-  <ul id="artist-list">
-    <li><a href="#" data-artist-id="1">Artist 1</a></li>
-    <li><a href="#" data-artist-id="2">Artist 2</a></li>
-    <li><a href="#" data-artist-id="3">Artist 3</a></li>
-  </ul>
-
-  <h2>Search for an artist or band:</h2>
-  <form>
-    <input type="text" id="search-input" placeholder="Enter artist or band name">
-    <button type="submit">Search</button>
-  </form>
-
-  <h2>Albums:</h2>
-  <div id="album-info"></div>
-</body>
+  <head>
+    <title>Music App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="dark">
+    <h1>Music App</h1>
+    <form id="search-form">
+      <input type="text" id="search-input" placeholder="Search for an artist or band" />
+      <button type="submit">Search</button>
+    </form>
+    <div id="artist-list"></div>
+    <div id="album-info"></div>
+    <div id="spinner" class="spinner">
+      <div class="spinner-ring"></div>
+    </div>
+    <p id="error-message" class="error"></p>
+    <p id="no-results" class="error">No results found.</p>
+    <script src="script.js"></script>
+  </body>
 </html>
