@@ -41,6 +41,7 @@ searchButton.addEventListener('click', function() {
         response.forEach(function(country) {
             // Extract the country information
             const flag = country.flag;
+            const name = country.name;
             const population = country.population;
             const language = country.languages[0].name;
             const currency = country.currencies[0].name;
@@ -56,6 +57,7 @@ searchButton.addEventListener('click', function() {
             infoDiv.classList.add('info');
 
             // Create the info text
+            const nameP = document.createElement('p');
             const populationP = document.createElement('p');
             const languageP = document.createElement('p');
             const currencyP = document.createElement('p');
@@ -66,6 +68,7 @@ searchButton.addEventListener('click', function() {
             flagImg.src = flag;
 
             // Set the text content for the info text elements
+            nameP.innerHTML = 'Name: ' + name;
             populationP.innerHTML = 'Population: ' + population.toLocaleString();
             languageP.innerHTML = 'Language: ' + language;
             currencyP.innerHTML = 'Currency: ' + currency;
@@ -74,6 +77,7 @@ searchButton.addEventListener('click', function() {
 
             // Append the flag image and info text elements to the card
             cardDiv.appendChild(flagImg);
+            infoDiv.appendChild(nameP);
             infoDiv.appendChild(populationP);
             infoDiv.appendChild(languageP);
             infoDiv.appendChild(currencyP);
