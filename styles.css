@@ -17,6 +17,10 @@ body {
   width: 100px;
   height: 25px;
 }
+#clearButton {
+  width: 100px;
+  height: 25px;
+}
 
 /* Style the results div and the elements inside it */
 #results {
