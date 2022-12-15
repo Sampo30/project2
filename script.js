@@ -1,50 +1,71 @@
-// Select the artist buttons and the artist info container
-const artistButtons = document.querySelector('#artist-buttons');
-const artistInfo = document.querySelector('#artist-info');
+// Get the search input and button
+const searchInput = document.getElementById('searchInput');
+const searchButton = document.getElementById('searchButton');
 
-// Set the API key for the Last.fm API
-const API_KEY = 'd271a80cf28ddc34f134d0ab4f5e9fea';
+// Add an event listener to the button to send the request when clicked
+searchButton.addEventListener('click', function() {
+    // Get the user's search query
+    const query = searchInput.value;
 
-// Add an event listener to the artist buttons container
-artistButtons.addEventListener('click', handleArtistClick);
+    // Create a new XMLHttpRequest
+    const xhr = new XMLHttpRequest();
 
-// Define the handleArtistClick function
-function handleArtistClick(event) {
-  // Get the artist name from the button text
-  const artist = event.target.textContent;
+    // Set the endpoint and parameters for the request
+    const endpoint = 'https://restcountries.com/v2/name/' + query;
 
-  // Use AJAX to fetch information about the artist from the Last.fm API
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', `http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=${API_KEY}&format=json`);
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      const data = JSON.parse(xhr.responseText);
-  
-      let bioSummary;
-      if (typeof data.bio !== 'undefined') {
-        bioSummary = data.bio.summary;
-      } else {
-        bioSummary = 'No bio available for this artist.';
-      }
-  
-      let imageUrl;
-      if (typeof data.image !== 'undefined') {
-        imageUrl = data.image[3]['#text'];
-      } else {
-        imageUrl = '';
-      }
-  
-      // Create the HTML for the artist info
-      const html = `
-        <h2>${data.name}</h2>
-        <p>${bioSummary}</p>
-        <img src="${imageUrl}" alt="${data.name}">
-      `;
-  
-      // Update the artist info container with the new HTML
-      artistInfo.innerHTML = html;
-    }
-  };  
-  
-  xhr.send();
-}
+    // Open the request
+    xhr.open('GET', endpoint);
+
+    // Send the request
+    xhr.send();
+
+    // Add an event listener to handle the response
+    xhr.addEventListener('load', function() {
+        // Parse the response as JSON
+        const response = JSON.parse(xhr.response);
+
+        // Get the results div
+        const resultsDiv = document.getElementById('results');
+
+        
+        // Iterate over the countries in the response
+        response.forEach(function(country) {
+            // Extract the country information
+            const flag = country.flag;
+            const population = country.population;
+            const language = country.languages[0].name;
+            const currency = country.currencies[0].name;
+
+            // Create the card container
+            const cardDiv = document.createElement('div');
+
+            // Create the flag image and info container
+            const flagImg = document.createElement('img');
+            const infoDiv = document.createElement('div');
+            infoDiv.classList.add('info');
+
+            // Create the info text
+            const populationP = document.createElement('p');
+            const languageP = document.createElement('p');
+            const currencyP = document.createElement('p');
+
+            // Set the src attribute for the flag image
+            flagImg.src = flag;
+
+            // Set the text content for the info text elements
+            populationP.textContent = `Population: ${population}`;
+            languageP.textContent = `Language: ${language}`;
+            currencyP.textContent = `Currency: ${currency}`;
+
+            // Append the flag image and info text elements to the card
+            cardDiv.appendChild(flagImg);
+            infoDiv.appendChild(populationP);
+            infoDiv.appendChild(languageP);
+            infoDiv.appendChild(currencyP);
+            cardDiv.appendChild(infoDiv);
+
+            // Append the card to the results div
+            resultsDiv.appendChild(cardDiv);
+        });
+    });
+});
