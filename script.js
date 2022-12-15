@@ -66,11 +66,11 @@ searchButton.addEventListener('click', function() {
             flagImg.src = flag;
 
             // Set the text content for the info text elements
-            populationP.textContent = `Population: ${population}`;
-            languageP.textContent = `Language: ${language}`;
-            currencyP.textContent = `Currency: ${currency}`;
-            capitalP.textContent = `Capital: ${capital}`;
-            regionP.textContent = `Region: ${region}`;
+            populationP.innerHTML = 'Population: ' + population.toLocaleString();
+            languageP.innerHTML = 'Language: ' + language;
+            currencyP.innerHTML = 'Currency: ' + currency;
+            capitalP.innerHTML = 'Capital: ' + capital;
+            regionP.innerHTML = 'Region: ' + region;
 
             // Append the flag image and info text elements to the card
             cardDiv.appendChild(flagImg);
