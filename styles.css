@@ -28,7 +28,7 @@ body {
 
 /* Style the card container */
 #results div {
-  width: 400px;
+  width: 600px;
   height: 100px;
   margin: 10px;
   padding: 5px;
@@ -36,16 +36,24 @@ body {
   border-radius: 5px;
   background-color: white;
   display: flex;
+  color: black;
 }
 
-/* Style the flag image and info container */
-#results img, #results div.info {
-  max-width: 100%;
-  height: auto;
+/* Style the flag image */
+#results img {
+  max-width: 150px;
+  min-height: 50px;
+  margin: 0;
+  padding: 0;
+  border: 5px solid black;
 }
 
+/* Style the info container */
 #results div.info {
   width: 300px;
+  height: 100px;
+  margin: 0;
+  padding: 0;
   float: right;
   text-align: left;
   padding-left: 10px;
