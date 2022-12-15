@@ -1,6 +1,6 @@
 /* Style the body */
 body {
-  background-color: black;
+  background-color: rgb(49, 46, 52);
   color: white;
   text-align: center;
 }
@@ -28,13 +28,14 @@ body {
 
 /* Style the card container */
 #results div {
-  width: 600px;
+  display: flex;
+  width: 1500px;
   height: 100px;
   margin: 10px;
   padding: 5px;
   border: 1px solid white;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(224, 212, 212);
   display: flex;
   color: black;
 }
@@ -50,7 +51,7 @@ body {
 
 /* Style the info container */
 #results div.info {
-  width: 300px;
+  width: fit-content;
   height: 100px;
   margin: 0;
   padding: 0;
